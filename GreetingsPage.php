@@ -4,7 +4,7 @@
 <?php
 include 'User&Language.php';
 $RegisteredUsers = new RegisteredUsers;
-echo '<form action="index.php" method="post">
+echo '<form action="RegistrationPage.php" method="post">
                     <fieldset>
                         <legend align="center"> Account </legend>
                         <div align="center">
@@ -19,7 +19,7 @@ if(empty($_SESSION['language'])){
     $_SESSION['language'] = $_POST['language'];
 }
 
-$RegisteredUsers = getLanguage();
+$RegisteredUsers -> sayLanguage();
 
 if($_SESSION['language'] ==  ""){
     echo '<form  method="post">

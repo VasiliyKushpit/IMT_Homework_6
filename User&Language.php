@@ -1,6 +1,5 @@
 <?php
-class RegisteredUsers
-{
+class RegisteredUsers{
     public $users = [
         ['login' => 'Vasisualiy', 'password' => '12345', 'lang' => 'ru'],
         ['login' => 'Afanasiy', 'password' => '54321', 'lang' => 'en'],
@@ -10,39 +9,45 @@ class RegisteredUsers
     ];
 
     public function ifRegistered(){
-        foreach ($this->users as $data_key => $data_value) {
-            foreach ($data_value as $key => $value) {
-                if ($value == $_POST['name']) {
-                    foreach ($data_value as $key => $value) {
-                        if ($value == $_POST['password']) {
-                            $_SESSION['logged_user'] = $_POST['name'];
-                        }
-                    }
+        foreach ($this -> users as $data_key => $data_value) {
+            if ($data_value['login'] == $_POST['name'] && $data_value['password'] == $_POST['password']) {
+                $_SESSION['logged_user'] = $_POST['name'];
+            }
+        }
+    }
+    public function getLanguage(){
+        foreach($this->users as $data_key => $data_value){
+            if($_SESSION['logged_user'] == $data_value['login']){
+            switch ($data_value['lang']){
+                case "ru":
+                    $_SESSION['language'] = "ru";
+                    break;
+                case "en":
+                    $_SESSION['language'] = "en";
+                    break;
+                case "ua":
+                    $_SESSION['language'] = "ua";
+                    break;
+                case "it":
+                    $_SESSION['language'] = "it";
                 }
             }
         }
     }
-    public function getData(){
-        foreach($this->users as $data_key => $data_value){
-            return $_SESSION['logged_user'] == $data_value['login'];
+    public function sayLanguage(){
+            switch ($_SESSION['language']){
+                case "ru":
+                    echo "Добрый день.";
+                    break;
+                case "en":
+                    echo "Good afternoon.";
+                    break;
+                case "ua":
+                    echo "Добрий день.";
+                    break;
+                case "it":
+                    echo "Ciao.";
             }
-        }
-    public function getLanguage(){
-        if($_SESSION['language'] != '') {
-            if ($_SESSION['language'] == 'ru') {
-                $_SESSION['language'] = "Добрый день.";
-            } elseif ($_SESSION['language'] == 'en') {
-                $_SESSION['language'] = "Good afternoon.";
-            } elseif ($_SESSION['language'] == 'ua') {
-                $_SESSION['language'] = "Добрий день.";
-            } elseif ($_SESSION['language'] == 'it') {
-                $_SESSION['language'] = "Ciao.";
-            }
-            echo $_SESSION['language'];
-        }
     }
 }
-
-
-
 ?>

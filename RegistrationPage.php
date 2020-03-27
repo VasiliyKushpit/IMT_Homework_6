@@ -4,7 +4,7 @@
 <html>
 <body>
 
-<form action="index2.php" method="post">
+<form action="WelcomePage.php" method="post">
     <fieldset>
         <legend align="center"> Authorise </legend>
     <div align="center">
